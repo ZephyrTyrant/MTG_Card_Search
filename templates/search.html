@@ -1,0 +1,100 @@
+{% extends 'layout.html'%}
+
+{% block title %}
+Search Result
+{% endblock %}
+    
+{% block main %}
+    <!--make general interface for cards with information and whatnot using <div> n stuff -->
+    <div class = 'topbar'>
+
+        <div class = 'dropdown' id = 'versions'>
+            <button class = 'dropdown-button'>Version</button>
+            <div class = 'dropdown-menu' style = 'display: none'>
+                {% for version in unique_versions %}
+                    {% if not unique_versions[version]['promo']%}
+                        <label>
+                            <span>{{ version }}</span>
+                            {% if unique_versions[version]['image_uris'] %}
+                                <input type='checkbox' class='sets' value='{{ unique_versions[version].image_uris.normal }}'>
+                            {% else %}
+                                <input type='checkbox' class='sets twoFaces' value='{{ unique_versions[version].card_faces[0].image_uris.normal }}' data-back='{{ unique_versions[version].card_faces[1].image_uris.normal }}'>
+                            {% endif %}
+                        </label>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class = 'dropdown' id = 'treatments'>
+            <button class = 'dropdown-button'>Treatment</button>
+            <div class = 'dropdown-menu' style = 'display: none'>
+
+                <label>
+                    <span>Showcase</span>
+                    <input type='checkbox' class='treatment' value=' name='>
+                </label>
+
+                <label>
+                    <span>Borderless</span>
+                    <input type='checkbox' class='treatment' value=' name='>
+                </label>
+
+                 <label>
+                    <span>Extended Art</span>
+                    <input type='checkbox' class='treatment' value=' name='>
+                </label>
+
+                 <label>
+                    <span>Retro Frame</span>
+                    <input type='checkbox' class='treatment' value=' name='>
+                </label>
+
+                 <label>
+                    <span>Textless</span>
+                    <input type='checkbox' class='treatment' value=' name='>
+                </label>
+
+                 <label>
+                    <span>Full Art</span>
+                    <input type='checkbox' class='treatment' value=' name='>
+                </label>
+
+            </div>
+
+        </div>
+
+        <div class = 'dropdown' id = 'foils'>
+            <button class = 'dropdown-button'>Foil</button>
+            <div class = 'dropdown-menu' style = 'display: none'>
+            {% for finish in finishes %} 
+                 <label>
+                    <span>{{finish}}</span>
+                    <input type='checkbox' class='treatment' value=' name='>
+                </label>
+            {% endfor %}
+                <!-- Use the data feature more, perhaps look into conveying entire object and make loop for foil types -->
+            </div>
+        </div>
+
+        <div class = 'dropdown' id = 'foils' style = 'display: none'>   <!-- Use in future to filter through secret lairs -->  <!-- Only shows normal? -->
+            <button class = 'dropdown-button'>Secret Lair</button>
+            <div class = 'dropdown-menu' style = 'display: none'>
+                 <label>
+                    <span>Normal</span>
+                    <input type='checkbox' class='treatment' value=' name='>
+                </label>
+
+            </div>
+        </div>
+
+    </div>
+    <div id='images'>
+        {% if data['image_uris']%}
+            <img src='{{ data.image_uris.normal }}' id='default' class='cardImages'>
+        {% else %}
+            <img src='{{ data.card_faces[0].image_uris.normal }}' id='default' class='cardImages double' data-back = '{{ data.card_faces[1].image_uris.normal }}'>
+        {% endif %}
+    </div>
+    <form id='sets'></form>
+{% endblock %}

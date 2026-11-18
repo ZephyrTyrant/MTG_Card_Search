@@ -1,0 +1,54 @@
+#navbar {
+    display: flex;
+    gap: 10px;
+    #dropdown {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+
+
+#images {
+    display: flex;
+    .cardImages {
+        max-width: 25%;
+        height: auto;
+    }
+}
+
+.topbar {
+    display: flex;
+    .dropdown {
+        display: flex;
+        flex-direction: column;
+        .dropdown-button {
+            display: flex;
+            justify-content: start;
+        }
+        .dropdown-menu {
+            display: flex;
+            position: fixed;
+            flex-direction: column; /* play around with position: absolute to get desired overlap*/
+            background-color: rgb(230,230,230);
+            transform: translateY(20px);
+            label {
+                display: flex;
+                justify-content: space-between;
+                border-style: solid;
+                border-width: 1.5px;
+                border-color: white;
+            }
+        }
+    }
+    #versions {
+        width: 200px;
+    }
+    #treatments {
+        width: 100px;
+    }
+    #foils {
+        width: 100px;
+    }
+}
